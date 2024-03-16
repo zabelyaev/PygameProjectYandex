@@ -1,5 +1,7 @@
 import sys
 
+import pygame.mixer
+
 from extensions import load_level
 from map import generate_level, Score
 from screens import *
@@ -17,6 +19,10 @@ if __name__ == '__main__':
     pygame.init()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     clock = pygame.time.Clock()
+
+    # запускаем фоновую музыку
+    pygame.mixer.music.load('data/sounds/Background Sound.mp3')
+    pygame.mixer.music.play(loops=-1)
 
     # группы спрайтов
     all_sprites = pygame.sprite.Group()

@@ -12,6 +12,7 @@ TILE_WIDTH = 50
 TILE_HEIGHT = 50
 
 SOUNDS = {
+    'background': 'data/sounds/Background Sound.mp3',
     'coin': load_sounds('drop coin.wav')
 }
 
