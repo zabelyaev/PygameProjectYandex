@@ -2,7 +2,7 @@ import pygame
 from pygame import K_LEFT, K_UP, K_RIGHT, K_DOWN
 from pygame.sprite import Sprite
 
-from constansts import TILE_HEIGHT, TILE_WIDTH, HEIGHT, WIDTH, SOUNDS
+from constansts import TILE_HEIGHT, TILE_WIDTH, HEIGHT, WIDTH
 
 
 class Player(Sprite):
@@ -21,9 +21,11 @@ class Player(Sprite):
         self.image_right = pygame.transform.flip(self.image, True, False)
 
     def update(self, coin_groups, score):
-        if pygame.sprite.spritecollide(self, coin_groups, dokill=True):
-            SOUNDS['coin'].play()
-            score.increase_score(level_increase=1)
+        if sprite := pygame.sprite.spritecollide(self, coin_groups, dokill=True):
+            coin = sprite[0]
+            sprite_score = coin.get_score()
+            coin.drop_sound.play()
+            score.increase_score(level_increase=sprite_score)
 
     def move(self, events, walls=None):
         if events.key == K_LEFT:
